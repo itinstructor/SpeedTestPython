@@ -18,16 +18,19 @@ class SpeedTestGui(ct.CTk):
     # Define the initialize method
     def __init__(self):
         super().__init__()
-        # Modes: system (default), light, dark
-        ct.set_appearance_mode("dark")
-        # Themes: blue (default), dark-blue, green
-        ct.set_default_color_theme("blue")
-        # Create speedtest object
-        self.speedtest = Speedtest(secure=True)
         self.title("Internet Speed Test")
         self.geometry("375x275")
         self.iconbitmap("speed.ico")
         self.resizable(False, False)
+
+        # Modes: system (default), light, dark
+        ct.set_appearance_mode("dark")
+        # Themes: blue (default), dark-blue, green
+        ct.set_default_color_theme("blue")
+        # Bind the closing event to the on_closing function
+        self.protocol("WM_DELETE_WINDOW", self.quit)
+        # Create speedtest object
+        self.speedtest = Speedtest(secure=True)
 
         # Call method to create all the widgets
         self.create_widgets()
