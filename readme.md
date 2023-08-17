@@ -9,7 +9,7 @@ This is a project to learn how to leverage ChatGPT 3.5 to build an application. 
 </p>
 
 ## History
-08/10/2023: Added status bar showing testing phases
+08/10/2023: Added threading and status bar showing phases of the speedtest
 
 
 ## About Me
