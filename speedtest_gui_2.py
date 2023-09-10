@@ -1,8 +1,10 @@
+#!/usr/bin/env python3
 """
-    Name: speedtest_gui.py
+    Name: speedtest_gui_2.py
     Author: William A Loring
-    Created: 12/05/21
-    Purpose: Test internet upload and download bandwidth with Python
+    Created: 08/24/23
+    Purpose: Test internet upload and download bandwidth with customtkinter
+    Use threads for a responsive GUI while testing.
     using Speedtest.net
     https://github.com/sivel/speedtest-cli
     https://pypi.org/project/speedtest-cli/
@@ -109,11 +111,13 @@ class SpeedTestGui(ct.CTk):
 
 # ------------------------ GET BEST SERVER --------------------------------#
     def get_best_server(self):
-        # Returns the nearest server
-        # Return the nearest test server and location in dictionary format
+        """Return the nearest test server and location
+           in dictionary format"""
         best_server = self.speedtest.get_best_server()
-        self.lbl_server.configure(
-            text=f"{best_server['sponsor']} - {best_server.get('name')}, {best_server.get('cc')}")
+        sponsor = best_server['sponsor']
+        name = best_server.get('name')
+        location = best_server.get('cc')
+        self.lbl_server.configure(text=f"{sponsor} - {name}, {location}")
 
         # Update the frame to show the label changes
         self.main_frame.update()
