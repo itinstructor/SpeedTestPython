@@ -1,6 +1,6 @@
 # Speed Test in Python
 
-## Internet bandwidth test in Python with CustomTkinter
+## Internet bandwidth tester in Python with CustomTkinter
 
 This project leverages using ChatGPT 3.5 to build parts of an application. I started with a functional Tkinter program I created using the speed-cli Python library. I am adding and integrating features using ChatGPT 3.5 to build some of the code.
 
