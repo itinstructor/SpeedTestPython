@@ -4,6 +4,8 @@
 
 This project leverages using ChatGPT 3.5 to build parts of an application. I started with a functional Tkinter program I created using the speed-cli Python library. I am adding and integrating features using ChatGPT 3.5 to build some of the code.
 
+I am not using ChatGPT to build the entire program. I am using it as a coding helper. I could do the entire program manually. Using ChatGPT speeds up the developement process.
+
 ## V2 GUI
 <p>
 <img alt="Speed Test" src="img/speed_test_gui_2.png">
