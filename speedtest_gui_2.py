@@ -2,7 +2,7 @@
 """
     Name: speedtest_gui_2.py
     Author: William A Loring
-    Created: 08/24/23
+    Created: 08/10/23
     Purpose: Test internet upload and download bandwidth with customtkinter
     Use threads for a responsive GUI while testing.
     using Speedtest.net
