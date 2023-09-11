@@ -6,7 +6,7 @@ This project leverages using ChatGPT 3.5 to build parts of an application. I sta
 
 I am not using ChatGPT to build the entire program. I am using it as a coding helper. I could do the entire program manually. Using ChatGPT speeds up the developement process.
 
-## V2 GUI
+## V3 GUI
 <p>
 <img alt="Speed Test" src="img/speed_test_gui_2.png">
 </p>
@@ -17,7 +17,8 @@ I am not using ChatGPT to build the entire program. I am using it as a coding he
 </p>
 
 ## History
-08/10/2023: Added customtkinter, threading and status bar showing phases of the speedtest
+08/10/2023: V3 Added customtkinter and status bar showing phases of the speedtest
+08/10/2023: V2 Added threading to keep GUI responsive
 
 
 ## About Me

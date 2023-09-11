@@ -3,8 +3,8 @@
     Author: William A Loring
     Created: 12/05/21
     Purpose: Test internet upload and download speed with Tkinter
-    using Speedtest.net. This program doesn't use threads, the GUI
-    is unresponsive while it is testing.
+    using Speedtest.net. This program uses threads, the GUI
+    is responsive while it is testing.
     https://github.com/sivel/speedtest-cli
     https://pypi.org/project/speedtest-cli/
 """
@@ -12,6 +12,7 @@ from tkinter import *
 from tkinter.ttk import *
 # pip install speedtest-cli
 from speedtest import Speedtest
+import threading
 
 
 class SpeedTestGui:
@@ -32,13 +33,23 @@ class SpeedTestGui:
         # Start main program loop
         mainloop()
 
-# ------------------------ RUN SPEEDTEST ----------------------------------#
-    def run_speedtest(self, *args):
+# ---------------------------------- START --------------------------------#
+    def start(self, *args):
+        """Start a thread to perform the speed test
+        This runs the speedtest on its own thread and doesn't affect
+        the main program thread. The GUI is still responsive.
+        """
+        test_thread = threading.Thread(target=self.run_speedtest)
+        test_thread.start()
+
+# -------------------------- RUN SPEEDTEST --------------------------------#
+    def run_speedtest(self):
         # Clear all labels
-        self.lbl_server.config(text="")
-        self.lbl_download.config(text="")
-        self.lbl_upload.config(text="")
-        self.lbl_ping.config(text="")
+        self.lbl_server.configure(text="")
+        self.lbl_download.configure(text="")
+        self.lbl_upload.configure(text="")
+        self.lbl_ping.configure(text="")
+        self.btn_start.configure(text="Testing . . .")
 
         # Call methods to run speed test
         self.get_best_server()
@@ -156,13 +167,13 @@ class SpeedTestGui:
             width=16,
             relief=GROOVE
         )
-        self.button = Button(
+        self.btn_start = Button(
             self.main_frame,
             text="Start Test",
-            command=self.run_speedtest
+            command=self.start
         )
 
-        self.button.grid(row=0, column=0, sticky=W)
+        self.btn_start.grid(row=0, column=0, sticky=W)
         self.lbl_status.grid(row=0, column=1, sticky=W)
         self.lbl_server.grid(row=1, column=0, sticky=W, columnspan=2)
 
@@ -180,8 +191,13 @@ class SpeedTestGui:
         for child in self.main_frame.winfo_children():
             child.grid_configure(padx=5, pady=5, ipadx=4, ipady=4)
         # The enter key will activate the calculate method
-        self.root.bind("<Return>", self.run_speedtest)
-        self.root.bind("<KP_Enter>", self.run_speedtest)
+        self.root.bind("<Return>", self.start)
+        self.root.bind("<KP_Enter>", self.start)
+        self.root.bind('<Escape>', self.quit)
+
+# ----------------------------- QUIT PROGRAM ------------------------------#
+    def quit(self, *args):
+        self.destroy()
 
 
 # Create object from the program class to run the program
