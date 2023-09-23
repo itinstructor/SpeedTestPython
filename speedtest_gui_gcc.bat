@@ -8,5 +8,5 @@ python -m nuitka ^
     --output-filename=speedtest_gui.exe ^
     --windows-disable-console ^
     --windows-icon-from-ico=speed.ico ^
-    speedtest_gui_2.py
+    speedtest_gui_4_random_server.py
 pause
