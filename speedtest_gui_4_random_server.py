@@ -113,13 +113,25 @@ class SpeedTestGui(ct.CTk):
     def get_random_server(self):
         servers = self.speedtest.get_servers()
         # print(servers)
-        best_server = random.choice(list(servers.keys()))
-        print(best_server)
-        # best_server = self.speedtest.get_best_server()
-        sponsor = best_server.get('sponsor')
-        name = best_server.get('name')
-        location = best_server.get('cc')
-        self.lbl_server.configure(text=f"{sponsor} - {name}, {location}")
+        # Get a random distance key from the dictionary
+        random_distance_key = random.choice(list(servers.keys()))
+
+        # Get the list of servers for the selected distance key
+        random_servers = servers[random_distance_key]
+
+        # Select a random server from the list
+        random_server = random.choice(random_servers)
+
+        name = random_server.get('name')
+        # print("URL:", random_server['url'])
+        sponsor = random_server.get('sponsor')
+        location = random_server.get("cc")
+        km = float(random_distance_key)
+        miles = km * 0.621371
+
+        self.lbl_server.configure(
+            text=f"{sponsor} - {name}, {location}, {miles:.0f} miles"
+        )
 
         # Update the frame to show the label changes
         self.main_frame.update()
