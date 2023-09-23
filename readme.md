@@ -4,9 +4,9 @@
 
 This project leverages using ChatGPT 3.5 to build parts of an application.
 
-I started with a functional Tkinter program I created using the speed-cli Python library. This program was the final step in the tutorial [Python Speedtest Tutorial.pdf](./Python%20Speedtest%20Tutorial.pdf) I am adding and integrating features using ChatGPT 3.5 to build some of the code.
+I started with a functional Tkinter program I created using the speed-cli Python library. This program was the final step in a tutorial I wrote for my programming classes. [Python Speedtest Tutorial.pdf](./Python%20Speedtest%20Tutorial.pdf)
 
-I am not using ChatGPT to build the entire program. I am using it as a coding helper. I could do the entire program manually. I am using ChatGPT speeds up the development process. I just install GitHub Copilot.
+I am not using ChatGPT to build the entire program. I am using it as a coding helper. I just installed GitHub Copilot in VSCode.
 
 
 ## V3 GUI
