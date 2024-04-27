@@ -9,10 +9,10 @@
     https://pypi.org/project/speedtest-cli/
 """
 # pip install customtkinter
-import random
 import customtkinter as ct
 # pip install speedtest-cli
 from speedtest import Speedtest
+import random
 import threading
 
 
@@ -111,8 +111,12 @@ class SpeedTestGui(ct.CTk):
 
 # -------------------------- GET RANDOM SERVER ----------------------------#
     def get_random_server(self):
+        """Get random servers from speedtest"""
         servers = self.speedtest.get_servers()
+
+        # Print server list for debugging
         # print(servers)
+
         # Get a random distance key from the dictionary
         random_distance_key = random.choice(list(servers.keys()))
 
@@ -124,6 +128,7 @@ class SpeedTestGui(ct.CTk):
 
         name = random_server.get('name')
         # print("URL:", random_server['url'])
+
         sponsor = random_server.get('sponsor')
         location = random_server.get("cc")
         km = float(random_distance_key)
