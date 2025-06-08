@@ -8,15 +8,14 @@ using Speedtest.net
 https://github.com/sivel/speedtest-cli
 https://pypi.org/project/speedtest-cli/
 """
-from base64 import b64decode
-
-# pip install customtkinter
+# pip install customtkinter Windows
+# sudo apt install python3-customtkinter Linux
 import customtkinter as ct
 
 # pip install speedtest-cli
 from speedtest import Speedtest
-import random
-import threading
+from random import choice
+from threading import Thread
 
 
 class SpeedTestGui(ct.CTk):
@@ -42,16 +41,16 @@ class SpeedTestGui(ct.CTk):
         # Call method to create all the widgets
         self.create_widgets()
 
-    # ---------------------------------- START ------------------------------- #
+    # ---------------------------------- START ----------------------------- #
     def start(self, *args):
         """Start a thread to perform the speed test
         This runs the speedtest on its own thread and doesn't affect
         the main program thread. The GUI is still responsive.
         """
-        speed_thread = threading.Thread(target=self.run_speedtest)
+        speed_thread = Thread(target=self.run_speedtest)
         speed_thread.start()
 
-    # -------------------------- RUN SPEEDTEST ------------------------------- #
+    # -------------------------- RUN SPEEDTEST ----------------------------- #
     def run_speedtest(self):
         # Clear all labels
         self.lbl_server.configure(text="")
@@ -67,7 +66,7 @@ class SpeedTestGui(ct.CTk):
         self.get_upload_bandwidth()
         self.get_ping_latency()
 
-    # ---------------------- GET DOWNLOAD BANDWIDTH -------------------------- #
+    # ---------------------- GET DOWNLOAD BANDWIDTH ------------------------ #
     def get_download_bandwidth(self):
         """Get download bandwidth from test server"""
         self.progress_bar.set(0.33)
@@ -102,7 +101,7 @@ class SpeedTestGui(ct.CTk):
         # Update the frame to show the label changes
         self.main_frame.update()
 
-    # -------------------------- GET PING LATENCY ---------------------------- #
+    # ------------------------- GET PING LATENCY --------------------------- #
     def get_ping_latency(self):
         """Get ping latency from test server"""
         self.progress_bar.set(1)
@@ -112,10 +111,11 @@ class SpeedTestGui(ct.CTk):
         self.lbl_ping.configure(text=f" {self._ping_result:.2f} ms")
         self.lbl_status.configure(text="Speed Test Complete")
         self.btn_start.configure(text="Start Test")
+        
         # Update the frame to show the label changes
         self.main_frame.update()
 
-    # -------------------------- GET RANDOM SERVER --------------------------- #
+    # ------------------------- GET RANDOM SERVER -------------------------- #
     def get_random_server(self):
         """Get random servers from speedtest"""
         servers = self.speedtest.get_servers()
@@ -124,13 +124,13 @@ class SpeedTestGui(ct.CTk):
         # print(servers)
 
         # Get a random distance key from the dictionary
-        random_distance_key = random.choice(list(servers.keys()))
+        random_distance_key = choice(list(servers.keys()))
 
         # Get the list of servers for the selected distance key
         random_servers = servers[random_distance_key]
 
         # Select a random server from the list
-        random_server = random.choice(random_servers)
+        random_server = choice(random_servers)
 
         name = random_server.get("name")
         # print("URL:", random_server['url'])
@@ -147,7 +147,7 @@ class SpeedTestGui(ct.CTk):
         # Update the frame to show the label changes
         self.main_frame.update()
 
-    # ------------------------ GET BEST SERVER ------------------------------- #
+    # ------------------------ GET BEST SERVER ----------------------------- #
     def get_best_server(self):
         """Return the nearest test server and location
         in dictionary format"""
@@ -160,7 +160,7 @@ class SpeedTestGui(ct.CTk):
         # Update the frame to show the label changes
         self.main_frame.update()
 
-    # ------------------------- CREATE WIDGETS ------------------------------- #
+    # ------------------------- CREATE WIDGETS ----------------------------- #
     def create_widgets(self):
         self.main_frame = ct.CTkFrame(master=self)
 
@@ -196,7 +196,7 @@ class SpeedTestGui(ct.CTk):
             self.main_frame, text="Start Test", command=self.start
         )
 
-        # ------------------------- PROGRESS BAR ----------------------------- #
+        # ----------------------- PROGRESS BAR ----------------------------- #
         self.progress_bar = ct.CTkProgressBar(
             self.status_bar, mode="determinate", width=380
         )
@@ -226,7 +226,7 @@ class SpeedTestGui(ct.CTk):
         self.bind("<KP_Enter>", self.start)
         self.bind("<Escape>", self.quit)
 
-    # ----------------------------- QUIT PROGRAM --------------------------- #
+    # --------------------------- QUIT PROGRAM ----------------------------- #
     def quit(self, *args):
         self.destroy()
 
