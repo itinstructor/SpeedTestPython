@@ -34,7 +34,7 @@ class SpeedTestGui(ct.CTk):
         self.protocol("WM_DELETE_WINDOW", self.quit)
         
         # Create speedtest object
-        self.speedtest = Speedtest(secure=True)
+        self.speedtest = Speedtest()
 
         # Call method to create all the widgets
         self.create_widgets()

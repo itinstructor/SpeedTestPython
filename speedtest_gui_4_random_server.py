@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 """
-    Name: speedtest_gui_4.py
-    Author: William A Loring
-    Created: 09/13/23
-    Purpose: Use a random close speedtest server
-    using Speedtest.net
-    https://github.com/sivel/speedtest-cli
-    https://pypi.org/project/speedtest-cli/
+Name: speedtest_gui_4.py
+Author: William A Loring
+Created: 09/13/23
+Purpose: Use a random close speedtest server
+using Speedtest.net
+https://github.com/sivel/speedtest-cli
+https://pypi.org/project/speedtest-cli/
 """
 # pip install customtkinter
 import customtkinter as ct
+
 # pip install speedtest-cli
 from speedtest import Speedtest
 import random
@@ -34,12 +35,12 @@ class SpeedTestGui(ct.CTk):
         self.protocol("WM_DELETE_WINDOW", self.quit)
 
         # Create speedtest object
-        self.speedtest = Speedtest(secure=True)
+        self.speedtest = Speedtest()
 
         # Call method to create all the widgets
         self.create_widgets()
 
-# ---------------------------------- START ------------------------------- #
+    # ---------------------------------- START ------------------------------- #
     def start(self, *args):
         """Start a thread to perform the speed test
         This runs the speedtest on its own thread and doesn't affect
@@ -48,7 +49,7 @@ class SpeedTestGui(ct.CTk):
         test_thread = threading.Thread(target=self.run_speedtest)
         test_thread.start()
 
-# -------------------------- RUN SPEEDTEST ------------------------------- #
+    # -------------------------- RUN SPEEDTEST ------------------------------- #
     def run_speedtest(self):
         # Clear all labels
         self.lbl_server.configure(text="")
@@ -64,10 +65,10 @@ class SpeedTestGui(ct.CTk):
         self.get_upload_bandwidth()
         self.get_ping_latency()
 
-# ---------------------- GET DOWNLOAD BANDWIDTH -------------------------- #
+    # ---------------------- GET DOWNLOAD BANDWIDTH -------------------------- #
     def get_download_bandwidth(self):
         """Get download bandwidth from test server"""
-        self.progress_bar.set(.33)
+        self.progress_bar.set(0.33)
         self.lbl_status.configure(text="Get Download Bandwidth . . .")
 
         # Update the frame to show the label changes
@@ -78,15 +79,14 @@ class SpeedTestGui(ct.CTk):
         # Convert from bits per second to megabits per second
         self._download_result = download_result / 1000 / 1000
 
-        self.lbl_download.configure(
-            text=f" {self._download_result:.2f} Mbps")
+        self.lbl_download.configure(text=f" {self._download_result:.2f} Mbps")
         # Update the frame to show the label changes
         self.main_frame.update()
 
-# ---------------------- GET UPLOAD BANDWIDTH ---------------------------- #
+    # ---------------------- GET UPLOAD BANDWIDTH ---------------------------- #
     def get_upload_bandwidth(self):
         """Get upload bandwidth from test server"""
-        self.progress_bar.set(.66)
+        self.progress_bar.set(0.66)
         # Get and print upload speed
         self.lbl_status.configure(text="Get Upload Bandwidth . . .")
         self.main_frame.update()
@@ -96,12 +96,11 @@ class SpeedTestGui(ct.CTk):
         # Convert from bits per second to megabits per second
         self._upload_result = upload_result / 1000 / 1000
 
-        self.lbl_upload.configure(
-            text=f" {self._upload_result:.2f} Mbps")
+        self.lbl_upload.configure(text=f" {self._upload_result:.2f} Mbps")
         # Update the frame to show the label changes
         self.main_frame.update()
 
-# -------------------------- GET PING LATENCY ---------------------------- #
+    # -------------------------- GET PING LATENCY ---------------------------- #
     def get_ping_latency(self):
         """Get ping latency from test server"""
         self.progress_bar.set(1)
@@ -114,7 +113,7 @@ class SpeedTestGui(ct.CTk):
         # Update the frame to show the label changes
         self.main_frame.update()
 
-# -------------------------- GET RANDOM SERVER --------------------------- #
+    # -------------------------- GET RANDOM SERVER --------------------------- #
     def get_random_server(self):
         """Get random servers from speedtest"""
         servers = self.speedtest.get_servers()
@@ -131,10 +130,10 @@ class SpeedTestGui(ct.CTk):
         # Select a random server from the list
         random_server = random.choice(random_servers)
 
-        name = random_server.get('name')
+        name = random_server.get("name")
         # print("URL:", random_server['url'])
 
-        sponsor = random_server.get('sponsor')
+        sponsor = random_server.get("sponsor")
         location = random_server.get("cc")
         km = float(random_distance_key)
         miles = km * 0.621371
@@ -146,20 +145,20 @@ class SpeedTestGui(ct.CTk):
         # Update the frame to show the label changes
         self.main_frame.update()
 
-# ------------------------ GET BEST SERVER ------------------------------- #
+    # ------------------------ GET BEST SERVER ------------------------------- #
     def get_best_server(self):
         """Return the nearest test server and location
-           in dictionary format"""
+        in dictionary format"""
         best_server = self.speedtest.get_best_server()
-        sponsor = best_server.get('sponsor')
-        name = best_server.get('name')
-        location = best_server.get('cc')
+        sponsor = best_server.get("sponsor")
+        name = best_server.get("name")
+        location = best_server.get("cc")
         self.lbl_server.configure(text=f"{sponsor} - {name}, {location}")
 
         # Update the frame to show the label changes
         self.main_frame.update()
 
-# ------------------------- CREATE WIDGETS ------------------------------- #
+    # ------------------------- CREATE WIDGETS ------------------------------- #
     def create_widgets(self):
         self.main_frame = ct.CTkFrame(master=self)
 
@@ -175,58 +174,27 @@ class SpeedTestGui(ct.CTk):
         # Keep the frame size regardless of the widget sizes
         self.status_bar.pack_propagate(False)
 
-        self.lbl_status = ct.CTkLabel(
-            self.main_frame,
-            text=""
-        )
-        self.lbl_server = ct.CTkLabel(
-            self.main_frame,
-            text=""
-        )
+        self.lbl_status = ct.CTkLabel(self.main_frame, text="")
+        self.lbl_server = ct.CTkLabel(self.main_frame, text="")
 
         self.lbl_download_label = ct.CTkLabel(
-            self.main_frame,
-            anchor=ct.E,
-            text="Download:",
-            width=13
+            self.main_frame, anchor=ct.E, text="Download:", width=13
         )
         self.lbl_upload_label = ct.CTkLabel(
-            self.main_frame,
-            anchor=ct.E,
-            text="Upload:",
-            width=13
+            self.main_frame, anchor=ct.E, text="Upload:", width=13
         )
         self.lbl_ping_label = ct.CTkLabel(
-            self.main_frame,
-            anchor=ct.E,
-            text="Ping (Latency):",
-            width=13
+            self.main_frame, anchor=ct.E, text="Ping (Latency):", width=13
         )
 
-        self.lbl_download = ct.CTkLabel(
-            self.main_frame,
-            width=16,
-            text=""
-        )
-        self.lbl_upload = ct.CTkLabel(
-            self.main_frame,
-            width=16,
-            text=""
-        )
-        self.lbl_ping = ct.CTkLabel(
-            self.main_frame,
-            width=16,
-            text=""
-        )
+        self.lbl_download = ct.CTkLabel(self.main_frame, width=16, text="")
+        self.lbl_upload = ct.CTkLabel(self.main_frame, width=16, text="")
+        self.lbl_ping = ct.CTkLabel(self.main_frame, width=16, text="")
         self.btn_start = ct.CTkButton(
-            self.main_frame,
-            text="Start Test",
-            command=self.start
+            self.main_frame, text="Start Test", command=self.start
         )
         self.progress_bar = ct.CTkProgressBar(
-            self.status_bar,
-            mode="determinate",
-            width=375
+            self.status_bar, mode="determinate", width=375
         )
         self.progress_bar.set(0)
         self.progress_bar.grid(row=0, column=0, columnspan=2, sticky=ct.W)
@@ -252,9 +220,9 @@ class SpeedTestGui(ct.CTk):
         # The enter key will activate the start method
         self.bind("<Return>", self.start)
         self.bind("<KP_Enter>", self.start)
-        self.bind('<Escape>', self.quit)
+        self.bind("<Escape>", self.quit)
 
-# ----------------------------- QUIT PROGRAM ----------------------------- #
+    # ----------------------------- QUIT PROGRAM ----------------------------- #
     def quit(self, *args):
         self.destroy()
 

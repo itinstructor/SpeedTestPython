@@ -19,7 +19,7 @@ class SpeedTestGui:
     # Define the initialize method
     def __init__(self):
         # Create speedtest object
-        self.speedtest = Speedtest(secure=True)
+        self.speedtest = Speedtest()
 
         self.root = Tk()
         self.root.title("Internet Speed Test")

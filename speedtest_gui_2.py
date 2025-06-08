@@ -32,7 +32,7 @@ class SpeedTestGui(ct.CTk):
         # Bind the closing event to the on_closing function
         self.protocol("WM_DELETE_WINDOW", self.quit)
         # Create speedtest object
-        self.speedtest = Speedtest(secure=True)
+        self.speedtest = Speedtest()
 
         # Call method to create all the widgets
         self.create_widgets()
