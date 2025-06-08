@@ -8,11 +8,11 @@ I started with a functional Tkinter program I created using the speed-cli Python
 
 ## V4 GUI
 
-Built with customtkinter
-
-https://customtkinter.tomschimansky.com/
+Built with [customtkinter](https://customtkinter.tomschimansky.com).
 
 ![App Interface](./img/speed_test_gui_4.png)
+
+speedtest_logo.ico file from (https://www.iconsdb.com/guacamole-green-icons/speedometer-icon.html)
 
 ## V1 GUI
 
