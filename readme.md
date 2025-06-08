@@ -18,7 +18,6 @@ https://customtkinter.tomschimansky.com/
 
 ![App Interface](./img/speed_test_gui_1.png)
 
-
 ## History
 
 - 09/23/2023: V4 Choose 1 random server out of the 10 closest speedtest servers
@@ -32,6 +31,8 @@ I am an Information Technology Instructor at Western Nebraska Community College.
 Visit my WNCC [About Me](https://sites.google.com/view/williamaloringwncc/about-me) page.
 
 ## License
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
 
-Copyright (c) 2024 William A Loring
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />
+This work is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+Copyright (c) 2024-25 William A Loring
